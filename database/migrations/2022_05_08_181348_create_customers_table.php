@@ -18,7 +18,7 @@ return new class extends Migration
             $table->dateTime('checkIn');
             $table->dateTime('checkOut')->nullable();
             $table->string('vehicleType');
-            $table->string('vehiclePlate');
+            $table->string('vehiclePlate', 6);
             $table->string('vehicleModel');
             $table->string('contactNumber', 10);
             $table->float('price', 10, 2)->nullable();

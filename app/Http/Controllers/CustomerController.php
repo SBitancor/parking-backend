@@ -46,7 +46,7 @@ class CustomerController extends Controller
         $hoursChecked = $checkIn->diffInHours(Carbon::now(), false);
 
         //Calculate total price
-        if($hoursChecked == 0){
+        if($hoursChecked < 1){
             $price = 20;
         } else {
             $price = 20 * $hoursChecked;
