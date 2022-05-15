@@ -16,7 +16,7 @@ class AuthController extends Controller
     }
 
     public function register(Request $request){
-
+        
         $fields = $request->validate([
             'cashierName'=>'required|string',
             'contactEmail'=>'required|string|unique:cashiers,contactEmail',
@@ -31,10 +31,15 @@ class AuthController extends Controller
             'contactEmail'=>$fields['contactEmail'],
             'contactNumber'=>$fields['contactNumber'],
             'username'=>$fields['username'],
-            'password'=>bcrypt($fields['password'])
+            'password'=>bcrypt($fields['password']),
         ]);
-        
+
+        //Create new token
         $token = $cashier->createToken('myapptoken')->plainTextToken;
+
+        //Save token to database
+        $cashier->remember_token = $token;
+        $cashier->save();
 
         $response = [
             'cashier'=>$cashier,
@@ -45,14 +50,13 @@ class AuthController extends Controller
     }
 
     public function login(Request $request){
-        $fields = $request->validate([
-            'contactEmail'=>'required|string',
-            'password'=>'required|string'
 
+        $fields = $request->validate([
+            'username'=>'required|string',
+            'password'=>'required|string',
         ]);
 
-        // Check email
-        $cashier = Cashier::where('contactEmail', $fields['contactEmail'])->first();
+        $cashier = Cashier::where('username', $fields['username'])->first();
 
         //Check password
         if (!$cashier || !Hash::check($fields['password'], $cashier->password)){
@@ -61,7 +65,12 @@ class AuthController extends Controller
             ], 401);
         }
 
+        //Create new token
         $token = $cashier->createToken('myapptoken')->plainTextToken;
+
+        //Save token to database
+        $cashier->remember_token = $token;
+        $cashier->save();
 
         $response = [
             'cashier'=>$cashier,
@@ -71,7 +80,14 @@ class AuthController extends Controller
         return response($response, 201);
     }
 
-    public function logout(Request $request){
+    public function logout(Request $request, $id){
+
+        $cashier = Cashier::find($id);
+ 
+        $cashier->remember_token = null;
+ 
+        $cashier->save();
+        
         auth()->user()->tokens()->delete();
 
         return [

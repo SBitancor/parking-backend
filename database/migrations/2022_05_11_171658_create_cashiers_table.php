@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('contactNumber', 10)->unique();
             $table->string('username')->unique();
             $table->string('password');
-            $table->rememberToken();
+            $table->rememberToken()->nullable();
             $table->timestamps();
         });
     }
