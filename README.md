@@ -11,8 +11,6 @@ This backend project is created with [Laravel](https://laravel.com/).
 
 - Run XAMPP and start Apache and MySQL.
 - On your browser, go to localhost and create a database named "parking-system".
-- Rename ".env.example"
-- 
 - Open the project inside the Visual Studio Code.
 - Rename ".env.example" to ".env" and change line 14 into "DB_DATABASE=parking-system"
 - Open terminal inside the project and run "composer install". This command will install all the required packages needed for the project to run.
@@ -26,3 +24,6 @@ You may refer to this files to know the required HTTP Request URL:
 - parking-backend/app/Http/Controllers/CustomerController.php
 - parking-backend/app/Http/Controllers/AuthController.php
 - parking-backend/routes/api.php
+
+## License and Disclosure
+This project was created in compliance of the author's academic project requirements. This project can be used for any purposes and under MIT License.
