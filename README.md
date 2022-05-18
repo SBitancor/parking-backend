@@ -2,8 +2,8 @@
 
 This backend project is created with [Laravel](https://laravel.com/).
 
-- [XAMPP](https://www.apachefriends.org/download.html).
-- [Postman](https://www.postman.com/downloads/).
+- [XAMPP](https://www.apachefriends.org/download.html)
+- [Postman](https://www.postman.com/downloads/)
 - [Visual Studio Code](https://code.visualstudio.com/download)
 - [Composer](https://getcomposer.org/download/)
 
@@ -26,4 +26,4 @@ You may refer to this files to know the required HTTP Request URL:
 - parking-backend/routes/api.php
 
 ## License and Disclosure
-This project was created in compliance of the author's academic project requirements. This project can be used for any purposes and under MIT License.
+This project was created in compliance of the author's academic project requirements. This project can be used by anyone for any purposes and under MIT License.
